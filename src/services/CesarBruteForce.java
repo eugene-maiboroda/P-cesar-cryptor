@@ -1,5 +1,6 @@
 package services;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,29 +16,50 @@ public class CesarBruteForce implements BruteForce {
         for (int i = 0; i < 73; i++) {
             String str = "";
             key++;
-            for (int j = 0; j <chars.length; j++) {
-                if (ALPHABET.indexOf(chars[j]) != -1) {
-                   char a =  ALPHABET.charAt((ALPHABET.indexOf(chars[j]) + key) % ALPHABET.length());
-                   str = (str) + a;
+            for (char aChar : chars) {
+                if (ALPHABET.indexOf(aChar) != -1) {
+                    char a = ALPHABET.charAt((ALPHABET.indexOf(aChar) + key) % ALPHABET.length());
+                    str = (str) + a;
                 } else {
-                    str += chars[j];
+                    str += aChar;
                 }
             }
-            has.put(74- key,str);
+//            Записываем все возможные варианты в Мапу
+            has.put(74 - key, str);
         }
         printOptions(has);
     }
-    public void printOptions(Map <Integer, String> options) {
-        for (Map.Entry <Integer,String> entry : options.entrySet()) {
+
+    public void printOptions(Map<Integer, String> options) {
+        for (Map.Entry<Integer, String> entry : options.entrySet()) {
             String value = entry.getValue();
-            boolean upperFirstLetter = Character.isUpperCase(value.charAt(0));
-            boolean lowerLastLetter = Character.isLowerCase(value.charAt(value.length()-1));
             if (value.contains(" ")) {
-                if (!value.endsWith(" ") && !value.startsWith(" ") && upperFirstLetter)
-                    System.out.println("Key: " + entry.getKey() + "\t" + entry.getValue());
-//            } else if (!value.endsWith(" ") && !value.startsWith(" ") && upperFirstLetter && lowerLastLetter) {
-//                System.out.println("Key: " + entry.getKey() + "\t" + entry.getValue());
+                String[] valueByWord = entry.getValue().split(" ");
+                if (isLengthLetter(valueByWord)) {
+                   if (!value.endsWith(" ") && !value.startsWith(" ") && !value.startsWith(":") && !value.startsWith("-"))
+                        System.out.println("Key: " + entry.getKey() + "\t" + entry.getValue());
+                }
             }
         }
     }
+
+    public boolean isSymbol(String word) {
+        for (int i = 1; i < word.length() - 1; i++) {
+            if (word.charAt(i) == ':' || word.charAt(i) == '!')
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isLengthLetter(String[] allText) {
+        String letter = "";
+        for (String str : allText) {
+            letter = str;
+            if (letter.length() > 24 || isSymbol(str)) { //Википедия говорит что самое большое слово состоит из 24 букв, по этому такое условие.
+                return false;
+            }
+        }
+        return true;
+    }
 }
+

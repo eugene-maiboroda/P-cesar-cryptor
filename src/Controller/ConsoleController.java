@@ -1,4 +1,4 @@
-package fileManager.Controller;
+package Controller;
 
 import fileManager.File;
 import fileManager.FileData;
@@ -112,11 +112,6 @@ public class ConsoleController {
         }
     }
 
-    //    private char [] passCharacter () {
-//        int codePointCopyRight = Integer.parseInt("\uD83C\uDFC3\u200D",16);
-//        char [] toChars = Character.toChars(codePointCopyRight);
-//        return toChars;
-//    }
     private void printColoredText(String text, String color) {
         System.out.println(color + text + ConsoleColored.RESET);
     }

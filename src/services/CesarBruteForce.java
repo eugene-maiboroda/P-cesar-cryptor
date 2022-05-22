@@ -1,6 +1,5 @@
 package services;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,36 +13,36 @@ public class CesarBruteForce implements BruteForce {
         Map<Integer, String> has = new HashMap<>();
         int key = 0;
         for (int i = 0; i < 73; i++) {
-            String str = "";
+            String allKeyText = "";
             key++;
             for (char aChar : chars) {
                 if (ALPHABET.indexOf(aChar) != -1) {
                     char a = ALPHABET.charAt((ALPHABET.indexOf(aChar) + key) % ALPHABET.length());
-                    str = (str) + a;
+                    allKeyText = (allKeyText) + a;
                 } else {
-                    str += aChar;
+                    allKeyText += aChar;
                 }
             }
 //            Записываем все возможные варианты в Мапу
-            has.put(74 - key, str);
+            has.put(74 - key, allKeyText);
         }
         printOptions(has);
     }
 
-    public void printOptions(Map<Integer, String> options) {
+    private void printOptions(Map<Integer, String> options) {
         for (Map.Entry<Integer, String> entry : options.entrySet()) {
             String value = entry.getValue();
             if (value.contains(" ")) {
                 String[] valueByWord = entry.getValue().split(" ");
-                if (isLengthLetter(valueByWord)) {
-                   if (!value.endsWith(" ") && !value.startsWith(" ") && !value.startsWith(":") && !value.startsWith("-"))
+                if (isLengthWord(valueByWord)) {
+                    if (!value.endsWith(" ") && !value.startsWith(" ") && !value.startsWith(":") && !value.startsWith("-"))
                         System.out.println("Key: " + entry.getKey() + "\t" + entry.getValue());
                 }
             }
         }
     }
 
-    public boolean isSymbol(String word) {
+    private boolean isLetter(String word) {
         for (int i = 1; i < word.length() - 1; i++) {
             if (word.charAt(i) == ':' || word.charAt(i) == '!')
                 return true;
@@ -51,11 +50,11 @@ public class CesarBruteForce implements BruteForce {
         return false;
     }
 
-    public boolean isLengthLetter(String[] allText) {
+    private boolean isLengthWord(String[] allText) {
         String letter = "";
         for (String str : allText) {
             letter = str;
-            if (letter.length() > 24 || isSymbol(str)) { //Википедия говорит что самое большое слово состоит из 24 букв, по этому такое условие.
+            if (letter.length() > 24 || isLetter(str)) { //Википедия говорит что самое большое слово состоит из 24 букв, по этому такое условие.
                 return false;
             }
         }

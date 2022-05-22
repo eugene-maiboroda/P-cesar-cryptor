@@ -1,4 +1,4 @@
-package fileManager.Controller;
+package Controller;
 
 public class ConsoleColored {
 

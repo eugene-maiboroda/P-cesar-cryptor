@@ -2,7 +2,7 @@ package services;
 
 import fileManager.FileData;
 
-public class CaesarCipher implements Cryptor {
+public class CesarCipher implements Cryptor {
 
     private static final String ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,\':-!? АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
     FileData fileData = new FileData();
@@ -22,6 +22,6 @@ public class CaesarCipher implements Cryptor {
     }
 
     public String decrypt(String incomingFilePath, int key, String path) {
-        return encrypt(incomingFilePath, -key, path);
+        return encrypt(incomingFilePath, 74-key, path);
     }
 }

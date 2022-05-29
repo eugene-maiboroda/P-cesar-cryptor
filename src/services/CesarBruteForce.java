@@ -13,20 +13,25 @@ public class CesarBruteForce implements BruteForce {
         Map<Integer, String> has = new HashMap<>();
         int key = 0;
         for (int i = 0; i < 73; i++) {
-            String allKeyText = "";
             key++;
-            for (char aChar : chars) {
-                if (ALPHABET.indexOf(aChar) != -1) {
-                    char a = ALPHABET.charAt((ALPHABET.indexOf(aChar) + key) % ALPHABET.length());
-                    allKeyText = (allKeyText) + a;
-                } else {
-                    allKeyText += aChar;
-                }
-            }
+            String allKeyText = returnStringKey(chars,key);
 //            Записываем все возможные варианты в Мапу
             has.put(74 - key, allKeyText);
         }
         printOptions(has);
+    }
+
+    private String returnStringKey (char [] chars, int key) {
+        String allKeyText = "";
+        for (char aChar : chars) {
+            if (ALPHABET.indexOf(aChar) != -1) {
+                char a = ALPHABET.charAt((ALPHABET.indexOf(aChar) + key) % ALPHABET.length());
+                allKeyText = (allKeyText) + a;
+            } else {
+               allKeyText += aChar;
+            }
+        }
+        return allKeyText;
     }
 
     private void printOptions(Map<Integer, String> options) {
@@ -34,8 +39,7 @@ public class CesarBruteForce implements BruteForce {
             String value = entry.getValue();
             if (value.contains(" ")) {
                 String[] valueByWord = entry.getValue().split(" ");
-                if (isLengthWord(valueByWord)) {
-                    if (!value.endsWith(" ") && !value.startsWith(" ") && !value.startsWith(":") && !value.startsWith("-"))
+                if (isLengthWord(valueByWord) && (!value.endsWith(" ") && !value.startsWith(" ") && !value.startsWith(":") && !value.startsWith("-"))) {
                         System.out.println("Key: " + entry.getKey() + "\t" + entry.getValue());
                 }
             }
@@ -44,7 +48,7 @@ public class CesarBruteForce implements BruteForce {
 
     private boolean isLetter(String word) {
         for (int i = 1; i < word.length() - 1; i++) {
-            if (word.charAt(i) == ':' || word.charAt(i) == '!')
+            if (word.charAt(i) == ':' || word.charAt(i) == '!' || word.charAt(i) == '?')
                 return true;
         }
         return false;

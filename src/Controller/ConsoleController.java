@@ -3,7 +3,7 @@ package Controller;
 import fileManager.File;
 import fileManager.FileData;
 import services.BruteForce;
-import services.CaesarCipher;
+import services.CesarCipher;
 import services.CesarBruteForce;
 import services.Cryptor;
 
@@ -15,7 +15,7 @@ public class ConsoleController {
     public static final int SYMBOL_COUNT = 15;
     private final File file = new FileData();
     private final BruteForce bruteForce = new CesarBruteForce();
-    private final Cryptor cryptor = new CaesarCipher();
+    private final Cryptor cryptor = new CesarCipher();
 
 
     public void printMenu() {

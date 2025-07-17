@@ -1,6 +1,6 @@
 package fileManager;
 
-public interface File {
+public interface MyFile {
 
     String getData (String incomingFilePath);
     void writeFile (String incomingFilePath, int key, String path);

@@ -2,8 +2,8 @@ package services;
 
 public interface Cryptor {
 
-    String encrypt (String incomingFilePath, int key, String path);
-    String decrypt (String incomingFilePath, int key, String path);
+    void encrypt (String textFromPath, int key, String path);
+    void decrypt (String textFromPath, int key, String path);
 
 
 }

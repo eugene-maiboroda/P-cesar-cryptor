@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class FileData implements File {
+public class FileData implements MyFile {
 
     @Override
     public String getData(String incomingFilePath) {

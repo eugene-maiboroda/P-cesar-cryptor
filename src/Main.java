@@ -1,8 +1,4 @@
-import Controller.ConsoleController;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import controller.ConsoleController;
 
 public class Main {
 

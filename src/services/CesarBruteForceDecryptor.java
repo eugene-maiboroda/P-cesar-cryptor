@@ -3,20 +3,19 @@ package services;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CesarBruteForce implements BruteForce {
+public class CesarBruteForceDecryptor implements Decryptor {
 
-    private static final String ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя.,\':-!? АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+    private static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz.,\':-!? ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     @Override
-    public void decryptBruteForce(String incomingFilePath, String path) {
-        char[] chars = incomingFilePath.toCharArray();
+    public void decryptBruteForce(String textFromPath) {
+        char[] chars = textFromPath.toCharArray();
         Map<Integer, String> has = new HashMap<>();
         int key = 0;
-        for (int i = 0; i < 73; i++) {
+        for (int i = 0; i < ALPHABET.length() -1; i++) {
             key++;
             String allKeyText = returnStringKey(chars,key);
-//            Записываем все возможные варианты в Мапу
-            has.put(74 - key, allKeyText);
+            has.put(ALPHABET.length() - key, allKeyText);
         }
         printOptions(has);
     }
@@ -46,23 +45,22 @@ public class CesarBruteForce implements BruteForce {
         }
     }
 
+    private boolean isLengthWord(String[] allText) {
+        String letter = "";
+        for (String str : allText) {
+            letter = str;
+            if (letter.length() > 24 || isLetter(str)) {
+            }
+        }
+        return true;
+    }
+
     private boolean isLetter(String word) {
         for (int i = 1; i < word.length() - 1; i++) {
             if (word.charAt(i) == ':' || word.charAt(i) == '!' || word.charAt(i) == '?')
                 return true;
         }
         return false;
-    }
-
-    private boolean isLengthWord(String[] allText) {
-        String letter = "";
-        for (String str : allText) {
-            letter = str;
-            if (letter.length() > 24 || isLetter(str)) { //Википедия говорит что самое большое слово состоит из 24 букв, по этому такое условие.
-                return false;
-            }
-        }
-        return true;
     }
 }
 

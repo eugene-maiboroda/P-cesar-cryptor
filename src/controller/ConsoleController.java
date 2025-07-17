@@ -1,10 +1,10 @@
-package Controller;
+package controller;
 
-import fileManager.File;
+import fileManager.MyFile;
 import fileManager.FileData;
-import services.BruteForce;
-import services.CesarCipher;
-import services.CesarBruteForce;
+import services.Decryptor;
+import services.CesarCryptor;
+import services.CesarBruteForceDecryptor;
 import services.Cryptor;
 
 import java.util.Scanner;
@@ -13,9 +13,9 @@ public class ConsoleController {
 
     public static final String APP_NAME = "CRYPTOR";
     public static final int SYMBOL_COUNT = 15;
-    private final File file = new FileData();
-    private final BruteForce bruteForce = new CesarBruteForce();
-    private final Cryptor cryptor = new CesarCipher();
+    private final MyFile myFile = new FileData();
+    private final Decryptor bruteForce = new CesarBruteForceDecryptor();
+    private final Cryptor cryptor = new CesarCryptor();
 
 
     public void printMenu() {
@@ -47,21 +47,21 @@ public class ConsoleController {
     private void encryptText() {
         String path = getPathToFile();
         int key = getKey();
-        String incomingFile = file.getData(path);
-        cryptor.encrypt(incomingFile, key, path);
+        String textFromPath = myFile.getData(path);
+        cryptor.encrypt(textFromPath, key, path);
     }
 
     private void decryptText() {
         String path = getPathToFile();
         int key = getKey();
-        String incomingFile = file.getData(path);
-        cryptor.decrypt(incomingFile, key, path);
+        String textFromPath = myFile.getData(path);
+        cryptor.decrypt(textFromPath, key, path);
     }
 
     private void bruteForce() {
         String path = getPathToFile();
-        String incomingFile = file.getData(path);
-        bruteForce.decryptBruteForce(incomingFile, path);
+        String textFromPath = myFile.getData(path);
+        bruteForce.decryptBruteForce(textFromPath);
     }
 
     private String getPathToFile() {

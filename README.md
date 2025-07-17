@@ -2,7 +2,7 @@
 
 **J-Cesar Cryptor** is a simple encryption/decryption tool built using Java. It implements the classic Caesar cipher algorithm with support for both direct key-based decryption and brute-force decryption. The project simulates a basic file-based encryption engine and showcases how to apply custom logic for encoding/decoding based on character shifting.
 
-<img width="301" height="240" alt="SCR-20250717-rqjk" src="https://github.com/user-attachments/assets/ef088990-8297-4280-8bc4-8308e53e84c4" />
+<img width="236" height="271" alt="image" src="https://github.com/user-attachments/assets/3e95cf59-0385-4bd1-b4c1-e4bb0c6c8a41" />
 
 
 ### Description
